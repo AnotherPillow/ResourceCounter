@@ -21,11 +21,6 @@ val mod_name: String by project
 val mod_version: String by project
 val mod_id: String by project
 
-// Sets up the variables for when we preprocess to other Minecraft versions.
-preprocess {
-    vars.put("MODERN", if (project.platform.mcMinor >= 16) 1 else 0)
-}
-
 // Sets the mod version to the one specified in `gradle.properties`. Make sure to change this following semver!
 version = mod_version
 // Sets the group, make sure to change this to your own. It can be a website you own backwards or your GitHub username.
