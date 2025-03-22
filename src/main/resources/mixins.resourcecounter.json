@@ -2,7 +2,5 @@
   "package": "com.anotherpillow.resourcecounter.mixins",
   "refmap": "mixins.resourcecounter.refmap.json",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "EssentialConnectionMixin"
-  ]
+  "mixins": []
 }
