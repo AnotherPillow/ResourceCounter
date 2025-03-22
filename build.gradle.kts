@@ -71,6 +71,7 @@ sourceSets {
 // Adds the Polyfrost maven repository so that we can get the libraries necessary to develop the mod.
 repositories {
     maven("https://repo.polyfrost.org/releases")
+    maven("https://files.minecraftforge.net/maven")
 }
 
 // Configures the libraries/dependencies for your mod.
@@ -78,12 +79,12 @@ dependencies {
     shade("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
         isTransitive = false
     }
-    annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT")
 
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.2")
+//    implementation("net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT")
 
-    // compileOnly("org.polyfrost:oneconfig-1.8.9-forge:0.2.0-alpha+") // Should not be included in jar
-    // shade("org.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta+") // Should be included in jar
+    modCompileOnly("cc.polyfrost:oneconfig-1.8.9-forge:0.2.2-alpha+")
+    shade("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta17")
 }
 
 tasks {
@@ -92,13 +93,7 @@ tasks {
     processResources {
         inputs.property("id", mod_id)
         inputs.property("name", mod_name)
-        val java = if (project.platform.mcMinor >= 18) {
-            17 // If we are playing on version 1.18, set the java version to 17
-        } else {
-            // Else if we are playing on version 1.17, use java 16.
-            if (project.platform.mcMinor == 17) 16
-            else 8 // For all previous versions, we **need** java 8 (for Forge support).
-        }
+        val java = 8
         val compatLevel = "JAVA_${java}"
         inputs.property("java", java)
         inputs.property("java_level", compatLevel)
@@ -113,18 +108,6 @@ tasks {
                     "java_level" to compatLevel,
                     "version" to mod_version,
                     "mcVersionStr" to project.platform.mcVersionStr
-                )
-            )
-        }
-        filesMatching("fabric.mod.json") {
-            expand(
-                mapOf(
-                    "id" to mod_id,
-                    "name" to mod_name,
-                    "java" to java,
-                    "java_level" to compatLevel,
-                    "version" to mod_version,
-                    "mcVersionStr" to project.platform.mcVersionStr.substringBeforeLast(".") + ".x"
                 )
             )
         }
