@@ -13,6 +13,6 @@ public class GoldCounterHud extends SingleTextHud {
     protected String getText(boolean example) {
 //        System.out.println("getting text for gold " + ItemCounter.gold);
         return EnumChatFormatting.GOLD + "Gold"
-                + EnumChatFormatting.GRAY + ": " + (example ? 1 : 3333);
+                + EnumChatFormatting.GRAY + ": " + (example ? 1 : ItemCounter.getGold());
     }
 }

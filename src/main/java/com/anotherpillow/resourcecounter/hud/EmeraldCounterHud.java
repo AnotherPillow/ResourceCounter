@@ -13,9 +13,7 @@ public class EmeraldCounterHud extends SingleTextHud {
 
     @Override
     protected String getText(boolean example) {
-        int emeralds = ItemCounter.getDiamonds();
-
         return EnumChatFormatting.DARK_GREEN + "Emeralds"
-             + EnumChatFormatting.GRAY + ": " + (example ? 1 : emeralds);
+             + EnumChatFormatting.GRAY + ": " + (example ? 1 : ItemCounter.getEmeralds());
     }
 }

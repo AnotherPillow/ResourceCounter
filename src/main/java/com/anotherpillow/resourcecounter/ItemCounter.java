@@ -9,6 +9,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 public class ItemCounter {
 
     private static int getItem(String name) {
@@ -16,19 +20,23 @@ public class ItemCounter {
 
         Minecraft mc = Minecraft.getMinecraft();
         if(mc == null) {
-            System.out.println("mc is null for " + name);
+//            System.out.println("mc is null for " + name);
             return 0;
         }
 
         EntityPlayerSP player = mc.thePlayer;
         if(player == null) {
-            System.out.println("player is null for " + name);
+//            System.out.println("player is null for " + name);
             return 0;
         }
 
+//        System.out.println("inventoyr items: " + Arrays.stream(player.inventory.mainInventory)
+//                .filter(Objects::nonNull) // Filter out null items
+//                .map(ItemStack::getUnlocalizedName)
+//                .collect(Collectors.joining(", ")));
+
         for(ItemStack stack : player.inventory.mainInventory){
             if(stack == null) {
-                System.out.println("stack is null");
                 continue;
             }
 
@@ -49,10 +57,10 @@ public class ItemCounter {
     }
 
     public static int getGold() {
-        return 6;
+        return getItem(Items.gold_ingot.getUnlocalizedName());
     }
 
     public static int getIron() {
-        return 6;
+        return getItem(Items.iron_ingot.getUnlocalizedName());
     }
 }

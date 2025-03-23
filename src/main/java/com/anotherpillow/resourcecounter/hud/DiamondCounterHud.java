@@ -14,9 +14,7 @@ public class DiamondCounterHud extends SingleTextHud {
 
     @Override
     protected String getText(boolean example) {
-        int diamonds = ItemCounter.getDiamonds();
-
         return EnumChatFormatting.AQUA + "Diamonds"
-                + EnumChatFormatting.GRAY + ": " + (example ? 1 : diamonds);
+                + EnumChatFormatting.GRAY + ": " + (example ? 1 : ItemCounter.getDiamonds());
     }
 }
