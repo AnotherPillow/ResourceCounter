@@ -39,13 +39,6 @@ loom {
     // If you're developing a server-side mod, you can remove this line.
     noServerRunConfigs()
 
-    // Adds the tweak class if we are building legacy version of forge as per the documentation (https://docs.polyfrost.cc)
-    if (project.platform.isLegacyForge) {
-//        launchConfigs.named("client") {
-//            // Loads OneConfig in dev env. Replace other tweak classes with this, but keep any other attributes!
-//            arg("--tweakClass", "org.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
-//        }
-    }
     // Configures the mixins if we are building for forge, useful for when we are dealing with cross-platform projects.
     if (project.platform.isForge) {
         forge {
@@ -148,7 +141,7 @@ tasks {
                 "ForceLoadAsMod" to true, // We want to load this jar as a mod, so we force Forge to do so.
                 "MixinConfigs" to "mixin.${mod_id}.json", // We want to use our mixin configuration, so we specify it here.
                 "TweakOrder" to 0,
-                "TweakClass" to "org.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker"
+                "TweakClass" to "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker"
             )
         }
         dependsOn(shadowJar)
