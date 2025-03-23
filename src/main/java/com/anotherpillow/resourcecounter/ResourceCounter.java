@@ -24,9 +24,9 @@ public class ResourceCounter {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @SubscribeEvent
-    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END || event.player == null) return;
-        ItemCounter.onTick(event.player);
-    }
+//    @SubscribeEvent
+//    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+//        if (event.phase != TickEvent.Phase.END || event.player == null) return;
+//        ItemCounter.onTick(event.player);
+//    }
 }

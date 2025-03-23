@@ -2,6 +2,8 @@ package com.anotherpillow.resourcecounter.hud;
 
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
 import com.anotherpillow.resourcecounter.ItemCounter;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
 public class EmeraldCounterHud extends SingleTextHud {
@@ -11,7 +13,9 @@ public class EmeraldCounterHud extends SingleTextHud {
 
     @Override
     protected String getText(boolean example) {
+        int emeralds = ItemCounter.getDiamonds();
+
         return EnumChatFormatting.DARK_GREEN + "Emeralds"
-             + EnumChatFormatting.GRAY + ": " + (example ? 1 : ItemCounter.emeralds);
+             + EnumChatFormatting.GRAY + ": " + (example ? 1 : emeralds);
     }
 }

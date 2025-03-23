@@ -12,6 +12,6 @@ public class IronCounterHud extends SingleTextHud {
     @Override
     protected String getText(boolean example) {
         return EnumChatFormatting.WHITE + "Iron"
-                + EnumChatFormatting.GRAY + ": " + (example ? 1 : ItemCounter.iron);
+                + EnumChatFormatting.GRAY + ": " + (example ? 1 : 123123);
     }
 }

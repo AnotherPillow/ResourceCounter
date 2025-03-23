@@ -26,11 +26,11 @@ public class ResourceCounterConfig extends Config {
     @HUD( name = "Iron Counter HUD", category = "HUD" )
     public IronCounterHud ironHud = new IronCounterHud();
 
-    @Switch(
-            name = "oooh.. button!",
-            size = OptionSize.DUAL,
-            category = "General",
-            subcategory = "Switches"
-    )
-    public static boolean allResourcesEnabled = true; // doesn't actually really work
+//    @Switch(
+//            name = "oooh.. button!",
+//            size = OptionSize.DUAL,
+//            category = "General",
+//            subcategory = "Switches"
+//    )
+//    public static boolean allResourcesEnabled = true; // doesn't actually really work
 }

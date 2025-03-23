@@ -1,64 +1,58 @@
 package com.anotherpillow.resourcecounter;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class ItemCounter {
-    public static int emeralds = 0;
-    public static int diamonds = 0;
-    public static int gold = 0;
-    public static int iron = 0;
 
-    public static void onTick(EntityPlayer player) {
-        ItemStack[] currentInventory = player.inventory.mainInventory;
-        int t_emeralds = 0;
-        int t_diamonds = 0;
-        int t_gold = 0;
-        int t_iron = 0;
+    private static int getItem(String name) {
+        int count = 0;
 
-        for (int i = 0; i < currentInventory.length; i++) {
-            ItemStack stack = currentInventory[i];
-            if (stack == null) continue;
-            Item item = stack.getItem();
-            if (item == null) continue;
-            ResourceLocation location = Item.itemRegistry.getNameForObject(item);
-
-            switch (location.toString()) {
-                case "minecraft:emerald":
-                    System.out.println(location.toString() + ": " + stack.stackSize);
-                    t_emeralds += stack.stackSize;
-
-                    break;
-                case "minecraft:diamond":
-                    System.out.println(location.toString() + ": " + stack.stackSize);
-                    t_diamonds += stack.stackSize;
-
-                    break;
-                case "minecraft:gold_ingot":
-                    System.out.println(location.toString() + ": " + stack.stackSize);
-                    t_gold += stack.stackSize;
-
-                    break;
-                case "minecraft:iron_ingot":
-                    System.out.println(location.toString() + ": " + stack.stackSize);
-                    t_iron += stack.stackSize;
-
-                    break;
-                default:
-                    continue;
-            }
-            emeralds = t_emeralds;
-            diamonds = t_diamonds;
-            gold = t_gold;
-            iron = t_iron;
+        Minecraft mc = Minecraft.getMinecraft();
+        if(mc == null) {
+            System.out.println("mc is null for " + name);
+            return 0;
         }
 
-//        System.out.println("tick finished, gold: " + gold);
-//        System.out.println("tick finished, diamond: " + diamonds);
-//        System.out.println("tick finished, emeralds: " + emeralds);
-//        System.out.println("tick finished, iron: " + iron);
+        EntityPlayerSP player = mc.thePlayer;
+        if(player == null) {
+            System.out.println("player is null for " + name);
+            return 0;
+        }
+
+        for(ItemStack stack : player.inventory.mainInventory){
+            if(stack == null) {
+                System.out.println("stack is null");
+                continue;
+            }
+
+            if(stack.getUnlocalizedName().equals(name))
+                count += stack.stackSize;
+
+        }
+        System.out.println("returning " + count + ", for: " + name);
+        return count;
+    }
+
+    public static int getEmeralds() {
+        return getItem(Items.emerald.getUnlocalizedName());
+    }
+
+    public static int getDiamonds() {
+        return getItem(Items.diamond.getUnlocalizedName());
+    }
+
+    public static int getGold() {
+        return 6;
+    }
+
+    public static int getIron() {
+        return 6;
     }
 }

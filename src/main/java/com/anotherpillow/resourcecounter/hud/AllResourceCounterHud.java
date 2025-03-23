@@ -1,7 +1,9 @@
 package com.anotherpillow.resourcecounter.hud;
 
+import cc.polyfrost.oneconfig.gui.OneConfigGui;
 import cc.polyfrost.oneconfig.hud.SingleTextHud;
 import cc.polyfrost.oneconfig.hud.TextHud;
+import cc.polyfrost.oneconfig.platform.Platform;
 import com.anotherpillow.resourcecounter.ItemCounter;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -14,14 +16,24 @@ public class AllResourceCounterHud extends TextHud {
     }
 
     @Override
+    protected boolean shouldShow() {
+        return this.isEnabled();
+
+        // base method:
+//        if (!showInGuis && Platform.getGuiPlatform().getCurrentScreen() != null && !(Platform.getGuiPlatform().getCurrentScreen() instanceof OneConfigGui))
+//            return false;
+//        if (!showInChat && Platform.getGuiPlatform().isInChat()) return false;
+//        return showInDebug || !Platform.getGuiPlatform().isInDebug();
+    }
+
+
+    @Override
     protected void getLines(List<String> lines, boolean example) {
         lines.add(EnumChatFormatting.DARK_GREEN + "hi");
         lines.add(EnumChatFormatting.DARK_GREEN + "hi");
         lines.add(EnumChatFormatting.DARK_GREEN + "hi");
         lines.add(EnumChatFormatting.DARK_GREEN + "hi");
         lines.add(EnumChatFormatting.DARK_GREEN + "hi");
-
-        this.drawLine("asdf", 16, 16, 2);
 
 //        System.out.println("getting lines for all resources, example: " + example + " line length: " + lines.size());
 //        lines.add(EnumChatFormatting.DARK_GREEN + "Emeralds"
