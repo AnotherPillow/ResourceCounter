@@ -19,21 +19,10 @@ public class ItemCounter {
         int count = 0;
 
         Minecraft mc = Minecraft.getMinecraft();
-        if(mc == null) {
-//            System.out.println("mc is null for " + name);
-            return 0;
-        }
+        if(mc == null) return 0;
 
         EntityPlayerSP player = mc.thePlayer;
-        if(player == null) {
-//            System.out.println("player is null for " + name);
-            return 0;
-        }
-
-//        System.out.println("inventoyr items: " + Arrays.stream(player.inventory.mainInventory)
-//                .filter(Objects::nonNull) // Filter out null items
-//                .map(ItemStack::getUnlocalizedName)
-//                .collect(Collectors.joining(", ")));
+        if(player == null) return 0;
 
         for(ItemStack stack : player.inventory.mainInventory){
             if(stack == null) {
@@ -44,7 +33,6 @@ public class ItemCounter {
                 count += stack.stackSize;
 
         }
-        System.out.println("returning " + count + ", for: " + name);
         return count;
     }
 
