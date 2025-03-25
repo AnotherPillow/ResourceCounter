@@ -9,15 +9,16 @@ import net.minecraft.util.EnumChatFormatting;
 
 import java.util.List;
 
+import static com.anotherpillow.resourcecounter.config.ResourceCounterConfig.allResourcesEnabled;
+
 public class AllResourceCounterHud extends TextHud {
-    public AllResourceCounterHud(boolean enabled) {
-        super(enabled, 0, 0);
-        System.out.println("all resource counter hud init, enabled: " + enabled);
+    public AllResourceCounterHud() {
+        super(true);
     }
 
     @Override
     protected boolean shouldShow() {
-        return this.isEnabled();
+        return allResourcesEnabled;
 
         // base method:
 //        if (!showInGuis && Platform.getGuiPlatform().getCurrentScreen() != null && !(Platform.getGuiPlatform().getCurrentScreen() instanceof OneConfigGui))

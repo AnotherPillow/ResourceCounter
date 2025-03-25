@@ -16,7 +16,7 @@ public class ResourceCounterConfig extends Config {
     }
 
     @HUD( name = "All Resource Counter HUD", category = "HUD" )
-    public AllResourceCounterHud allResourceHud = new AllResourceCounterHud(true);
+    public AllResourceCounterHud allResourceHud = new AllResourceCounterHud();
     @HUD( name = "Emerald Counter HUD", category = "HUD" )
     public EmeraldCounterHud emeraldHud = new EmeraldCounterHud();
     @HUD( name = "Diamond Counter HUD", category = "HUD" )
@@ -26,11 +26,11 @@ public class ResourceCounterConfig extends Config {
     @HUD( name = "Iron Counter HUD", category = "HUD" )
     public IronCounterHud ironHud = new IronCounterHud();
 
-//    @Switch(
-//            name = "oooh.. button!",
-//            size = OptionSize.DUAL,
-//            category = "General",
-//            subcategory = "Switches"
-//    )
-//    public static boolean allResourcesEnabled = true; // doesn't actually really work
+    @Switch(
+            name = "oooh.. button!",
+            size = OptionSize.DUAL,
+            category = "General",
+            subcategory = "Switches"
+    )
+    public static boolean allResourcesEnabled = true; // doesn't actually really work
 }
