@@ -10,6 +10,7 @@ import net.minecraft.util.EnumChatFormatting;
 import java.util.List;
 
 import static com.anotherpillow.resourcecounter.config.ResourceCounterConfig.allResourcesEnabled;
+import static com.anotherpillow.resourcecounter.config.ResourceCounterConfig.compactAllResourcesEnabled;
 
 public class AllResourceCounterHud extends TextHud {
     public AllResourceCounterHud() {
@@ -30,20 +31,26 @@ public class AllResourceCounterHud extends TextHud {
 
     @Override
     protected void getLines(List<String> lines, boolean example) {
-        lines.add(EnumChatFormatting.DARK_GREEN + "hi");
-        lines.add(EnumChatFormatting.DARK_GREEN + "hi");
-        lines.add(EnumChatFormatting.DARK_GREEN + "hi");
-        lines.add(EnumChatFormatting.DARK_GREEN + "hi");
-        lines.add(EnumChatFormatting.DARK_GREEN + "hi");
+        if (compactAllResourcesEnabled) {
+            lines.add(
+                      EnumChatFormatting.DARK_GREEN + String.valueOf(example ? 1 : ItemCounter.getEmeralds())
+                    + EnumChatFormatting.GRAY + " : "
+                    + EnumChatFormatting.AQUA + (example ? 1 : ItemCounter.getDiamonds())
+                    + EnumChatFormatting.GRAY + " : "
+                    + EnumChatFormatting.GOLD + (example ? 1 : ItemCounter.getGold())
+                    + EnumChatFormatting.GRAY + " : "
+                    + EnumChatFormatting.WHITE + (example ? 1 : ItemCounter.getIron()));
+        } else {
+            lines.add(EnumChatFormatting.DARK_GREEN + "Emeralds"
+                    + EnumChatFormatting.GRAY + ": " + (example ? 1 : ItemCounter.getEmeralds()));
+            lines.add(EnumChatFormatting.AQUA + "Diamonds"
+                    + EnumChatFormatting.GRAY + ": " + (example ? 1 : ItemCounter.getDiamonds()));
+            lines.add(EnumChatFormatting.GOLD + "Gold"
+                    + EnumChatFormatting.GRAY + ": " + (example ? 1 : ItemCounter.getGold()));
+            lines.add(EnumChatFormatting.WHITE + "Iron"
+                    + EnumChatFormatting.GRAY + ": " + (example ? 1 : ItemCounter.getIron()));
+        }
 
-//        System.out.println("getting lines for all resources, example: " + example + " line length: " + lines.size());
-//        lines.add(EnumChatFormatting.DARK_GREEN + "Emeralds"
-//                + EnumChatFormatting.GRAY + ": " + (example ? 1 : 33));
-//        lines.add(EnumChatFormatting.AQUA + "Diamonds"
-//                + EnumChatFormatting.GRAY + ": " + (example ? 1 : 33));
-//        lines.add(EnumChatFormatting.GOLD + "Gold"
-//                + EnumChatFormatting.GRAY + ": " + (example ? 1 : 33));
-//        lines.add(EnumChatFormatting.WHITE + "Iron"
-//                + EnumChatFormatting.GRAY + ": " + (example ? 1 : 333));
+
     }
 }

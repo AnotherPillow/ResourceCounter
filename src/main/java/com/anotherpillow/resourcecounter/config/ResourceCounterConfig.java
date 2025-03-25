@@ -27,10 +27,17 @@ public class ResourceCounterConfig extends Config {
     public IronCounterHud ironHud = new IronCounterHud();
 
     @Switch(
-            name = "oooh.. button!",
+            name = "Enable all resource counter",
             size = OptionSize.DUAL,
             category = "General",
             subcategory = "Switches"
     )
-    public static boolean allResourcesEnabled = true; // doesn't actually really work
+    public static boolean allResourcesEnabled = true;
+    @Switch(
+            name = "Compact all resource counter",
+            size = OptionSize.DUAL,
+            category = "General",
+            subcategory = "Switches"
+    )
+    public static boolean compactAllResourcesEnabled = false;
 }
